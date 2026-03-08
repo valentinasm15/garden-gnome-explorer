@@ -48,7 +48,7 @@ export default function RastersList({ data }: RastersListProps) {
                 className="rounded-lg border border-border bg-card p-3 hover:border-primary/30 transition-colors"
               >
                 <p className="text-sm font-medium font-mono">{r.properties.name}</p>
-                <p className="text-xs text-muted-foreground mt-1">{r.properties.metadata.long_name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{r.properties.metadata?.long_name ?? ""}</p>
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {r.properties.metadata.units && (
                     <Badge variant="secondary" className="text-xs">{r.properties.metadata.units}</Badge>
