@@ -89,7 +89,7 @@ export default function FieldPlotsTable({ data, onRowClick, selectedId }: FieldP
                   </Badge>
                 </TableCell>
                 <TableCell className="text-right font-mono">{f.properties.last_stem_count}</TableCell>
-                <TableCell className="text-right font-mono">{f.properties.last_basal_area_hectare.toFixed(2)}</TableCell>
+                <TableCell className="text-right font-mono">{f.properties.last_basal_area_hectare?.toFixed(2) ?? "—"}</TableCell>
                 <TableCell className="text-right font-mono">{f.properties.radius_m}</TableCell>
               </TableRow>
             ))}
