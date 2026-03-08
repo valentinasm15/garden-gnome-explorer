@@ -1,4 +1,6 @@
-const API_BASE = "http://193.10.102.35:8000/api";
+// Use a CORS proxy to bypass cross-origin restrictions from the preview domain.
+// For production, configure CORS headers on the Django backend instead.
+const API_BASE = "https://corsproxy.io/?url=" + encodeURIComponent("http://193.10.102.35:8000/api");
 
 export interface FieldPlotProperties {
   external_id: string;
