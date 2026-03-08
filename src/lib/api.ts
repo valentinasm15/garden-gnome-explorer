@@ -1,4 +1,6 @@
-const API_BASE = "http://193.10.102.35:8000/api";
+// API calls go through Vite's dev server proxy to avoid CORS issues.
+// The proxy is configured in vite.config.ts to forward /api/* to the Django backend.
+const API_BASE = "/api";
 
 export interface FieldPlotProperties {
   external_id: string;
