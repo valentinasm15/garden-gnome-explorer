@@ -12,14 +12,14 @@ export default function RastersList({ data }: RastersListProps) {
 
   const filtered = data.filter(
     (r) =>
-      r.properties.name.toLowerCase().includes(search.toLowerCase()) ||
-      r.properties.family.name.toLowerCase().includes(search.toLowerCase()) ||
-      (r.properties.metadata.long_name || "").toLowerCase().includes(search.toLowerCase())
+      r.properties.name?.toLowerCase().includes(search.toLowerCase()) ||
+      r.properties.family?.name?.toLowerCase().includes(search.toLowerCase()) ||
+      (r.properties.metadata?.long_name || "").toLowerCase().includes(search.toLowerCase())
   );
 
   // Group by family
   const grouped = filtered.reduce<Record<string, GeoFeature<RasterProperties>[]>>((acc, r) => {
-    const fam = r.properties.family.name;
+    const fam = r.properties.family?.name ?? "Unknown";
     if (!acc[fam]) acc[fam] = [];
     acc[fam].push(r);
     return acc;
@@ -48,7 +48,7 @@ export default function RastersList({ data }: RastersListProps) {
                 className="rounded-lg border border-border bg-card p-3 hover:border-primary/30 transition-colors"
               >
                 <p className="text-sm font-medium font-mono">{r.properties.name}</p>
-                <p className="text-xs text-muted-foreground mt-1">{r.properties.metadata.long_name}</p>
+                <p className="text-xs text-muted-foreground mt-1">{r.properties.metadata?.long_name ?? ""}</p>
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {r.properties.metadata.units && (
                     <Badge variant="secondary" className="text-xs">{r.properties.metadata.units}</Badge>
