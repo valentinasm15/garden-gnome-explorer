@@ -56,9 +56,7 @@ export interface FeatureCollection<T> {
 }
 
 async function fetchEndpoint<T>(path: string): Promise<FeatureCollection<T>> {
-  const res = await fetch(`${API_BASE}/${path}/`);
-  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
-  return res.json();
+  return fetchEndpointRaw<FeatureCollection<T>>(path);
 }
 
 export const api = {
