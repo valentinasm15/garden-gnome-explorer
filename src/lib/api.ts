@@ -1,13 +1,6 @@
-// Use a CORS proxy to bypass cross-origin restrictions from the preview domain.
-// For production, configure CORS headers on the Django backend instead.
-const RAW_API_BASE = "http://193.10.102.35:8000/api";
-
-async function fetchEndpointRaw<T>(path: string): Promise<T> {
-  const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(`${RAW_API_BASE}/${path}/`)}`;
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
-  return res.json();
-}
+// API calls go through Vite's dev server proxy to avoid CORS issues.
+// The proxy is configured in vite.config.ts to forward /api/* to the Django backend.
+const API_BASE = "/api";
 
 export interface FieldPlotProperties {
   external_id: string;
