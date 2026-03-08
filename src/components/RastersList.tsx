@@ -12,14 +12,14 @@ export default function RastersList({ data }: RastersListProps) {
 
   const filtered = data.filter(
     (r) =>
-      r.properties.name.toLowerCase().includes(search.toLowerCase()) ||
-      r.properties.family.name.toLowerCase().includes(search.toLowerCase()) ||
-      (r.properties.metadata.long_name || "").toLowerCase().includes(search.toLowerCase())
+      r.properties.name?.toLowerCase().includes(search.toLowerCase()) ||
+      r.properties.family?.name?.toLowerCase().includes(search.toLowerCase()) ||
+      (r.properties.metadata?.long_name || "").toLowerCase().includes(search.toLowerCase())
   );
 
   // Group by family
   const grouped = filtered.reduce<Record<string, GeoFeature<RasterProperties>[]>>((acc, r) => {
-    const fam = r.properties.family.name;
+    const fam = r.properties.family?.name ?? "Unknown";
     if (!acc[fam]) acc[fam] = [];
     acc[fam].push(r);
     return acc;
