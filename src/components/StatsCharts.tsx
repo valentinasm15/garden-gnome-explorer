@@ -42,18 +42,6 @@ export default function StatsCharts({ fieldPlots, trees }: StatsChartsProps) {
       .sort((a, b) => b.basalArea - a.basalArea);
   }, [fieldPlots]);
 
-  const treeScatter = useMemo(() => {
-    if (!trees) return [];
-    return trees.features
-      ? []
-      : trees
-          .slice(0, 500)
-          .map((t) => ({
-            dbh: t.properties.dbh_cm,
-            height: t.properties.height_m,
-            species: SPECIES_MAP[t.properties.species] || `#${t.properties.species}`,
-          }));
-  }, [trees]);
 
   const treeScatterData = useMemo(() => {
     if (!trees) return [];
