@@ -70,9 +70,9 @@ export default function MapView({ fieldPlots, trees, rasters, selectedPlotId, on
             fillOpacity: 0.08,
           })
             .bindPopup(
-              `<strong>${r.properties.name}</strong><br/>
-              Family: ${r.properties.family.name}<br/>
-              ${r.properties.metadata.long_name || ""}`
+            `<strong>${r.properties.name}</strong><br/>
+              Family: ${r.properties.family?.name ?? "Unknown"}<br/>
+              ${r.properties.metadata?.long_name || ""}`
             )
             .addTo(map);
           latlngs.forEach((ll) => bounds.extend(ll));
